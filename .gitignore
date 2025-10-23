@@ -11,8 +11,9 @@ target/
 *.iws
 *.iml
 *.ipr
-**.apk
+
 **.ap_
+src/test/resources/*.apk
 
 ### Eclipse ###
 .apt_generated
