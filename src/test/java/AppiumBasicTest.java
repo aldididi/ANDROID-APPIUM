@@ -15,6 +15,7 @@ public class AppiumBasicTest extends BaseTest {
     public void test() throws MalformedURLException, InterruptedException {
         AppiumConfiguration();
         driver.findElement(AppiumBy.accessibilityId("Preference")).click();
+
         System.out.println("App launched successfully on emulator!");
         Thread.sleep(5000);
         Closing();

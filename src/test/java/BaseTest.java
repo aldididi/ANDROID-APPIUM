@@ -1,3 +1,4 @@
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -16,7 +17,7 @@ public class BaseTest {
     @BeforeClass
     public void AppiumConfiguration() throws MalformedURLException {
         // run appium server everytime code running
-        AppiumDriverLocalService serviceBuilder = new AppiumServiceBuilder()
+        serviceBuilder = new AppiumServiceBuilder()
                 .withAppiumJS(new File("/Users/aldymochamadheryana/.nvm/versions/node/v20.19.5/lib/node_modules/appium/build/lib/main.js"))
                 .withIPAddress("127.0.0.1").usingPort(4723).build();
         serviceBuilder.start();
@@ -25,10 +26,11 @@ public class BaseTest {
         //options.setApp("src/test/java/resources/ApiDemos-debug.apk");
         options.setApp(System.getProperty("user.dir") + "/src/test/resources/ApiDemos-debug.apk");
          driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
+
     }
     @AfterClass
     public void Closing(){
-        driver.quit();
-        serviceBuilder.stop();
+        if (driver != null) driver.quit();
+        if (serviceBuilder != null) serviceBuilder.stop();
     }
 }
